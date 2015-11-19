@@ -6390,4 +6390,14 @@ th.hide-for-touch {
 body {
   background: #e2ebf3; }
 
+.project {
+  font-family: 'Lobster Two', cursive; }
+
+.add-form {
+  width: 400px;
+  margin: 30px auto; }
+
+textarea {
+  height: 100px; }
+
 /*# sourceMappingURL=main.css.map */

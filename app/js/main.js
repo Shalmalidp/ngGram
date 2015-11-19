@@ -16,12 +16,12 @@ var config = function config($stateProvider, $urlRouterProvider) {
     controller: 'HomeController as vm',
     templateUrl: './templates/app-layout/home.tpl.html'
   }).state('root.grams', {
-    url: '/grams',
+    url: '/allgrams',
     controller: 'GramsController as vm',
     templateUrl: './templates/app-grams/grams.tpl.html'
   }).state('root.addgrams', {
     url: '/grams/add',
-    controller: 'AddGramController as vm',
+    controller: 'AddGramsController as vm',
     templateUrl: './templates/app-grams/add-gram.tpl.html'
   });
 };
@@ -137,7 +137,40 @@ var _directivesGramDirective2 = _interopRequireDefault(_directivesGramDirective)
 _angular2['default'].module('app.grams', ['app.core']).controller('GramsController', _controllersGramsController2['default']).controller('AddGramsController', _controllersAddgramsController2['default']).service('GramService', _servicesGramService2['default']).directive('gramItem', _directivesGramDirective2['default']);
 
 },{"../app-core/index":3,"./controllers/addgrams.controller":4,"./controllers/grams.controller":5,"./directives/gram.directive":6,"./services/gram.service":8,"angular":14}],8:[function(require,module,exports){
-"use strict";
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var GramService = function GramService(PARSE, $http) {
+  // let vm = this;
+
+  var url = PARSE.URL + 'classes/gram';
+
+  this.getAllGrams = getAllGrams;
+  this.addGram = addGram;
+
+  function Gram(gramObj) {
+    this.picture = gramObj.picture;
+    this.name = gramObj.name;
+    this.description = gramObj.description;
+    //this.likes = gramObj.likes;
+  }
+
+  function addGram(gramObj) {
+    var g = new Gram(gramObj);
+    return $http.post(url, g, PARSE.CONFIG);
+  }
+
+  function getAllGrams() {
+    return $http.get(url, PARSE.CONFIG);
+  }
+};
+
+GramService.$inject = ['PARSE', '$http'];
+
+exports['default'] = GramService;
+module.exports = exports['default'];
 
 },{}],9:[function(require,module,exports){
 "use strict";

@@ -15,14 +15,14 @@ let config = function($stateProvider, $urlRouterProvider) {
     })
 
     .state('root.grams',{
-      url : '/grams',
+      url : '/allgrams',
       controller : 'GramsController as vm',
       templateUrl : './templates/app-grams/grams.tpl.html'
     })
 
     .state('root.addgrams',{
       url :'/grams/add',
-      controller : 'AddGramController as vm',
+      controller : 'AddGramsController as vm',
       templateUrl :'./templates/app-grams/add-gram.tpl.html'
     });
 
