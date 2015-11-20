@@ -11,7 +11,7 @@ let GramService = function(PARSE, $http) {
     this.picture      = gramObj.picture;
     this.name         = gramObj.name;
     this.description  = gramObj.description;
-    this.likes        = (gramObj.likes) ? 0: Number(gramObj.likes) ;
+    this.likes        = (gramObj.likes) ? 0 : Number(gramObj.likes) ;
   }
 
   function addGram(gramObj){
@@ -24,8 +24,9 @@ let GramService = function(PARSE, $http) {
   }
 
   function likeCounter(gramObj){
-    console.log('clicked');
-    return gramObj.likes + 1;
+    //console.log('clicked');
+    (gramObj.likes = gramObj.likes + 1);
+    return $http.put(url +'/'+ gramObj.objectId, gramObj, PARSE.CONFIG);
   }
   
 

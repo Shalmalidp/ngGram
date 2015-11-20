@@ -131,21 +131,25 @@ Object.defineProperty(exports, '__esModule', {
 var shalmaliGram = function shalmaliGram($state, GramService, $timeout) {
 
   return {
-    restrict: 'E',
+    restrict: 'AE',
     replace: true,
     scope: {
       gram: '='
     },
-    template: '\n      <div class="collection">\n        <p> {{ gram.name }}\n        <img ng-src="{{ gram.picture }}" >\n        <div class="hidden"> <i class="fa fa-heart fa-5x">{{ gram.likes }}</i> </div\n\n      </div>\n    ',
+    template: '\n      <div class="collection">\n        <p> {{ gram.name }}\n        <img ng-src="{{ gram.picture }}">\n        <div class="hidden"><i class="fa fa-heart fa-5x">{{ gram.likes }}</i></div>\n\n      </div>\n    ',
     controller: 'GramsController as vm',
     link: function link(scope, element, attrs) {
       console.log("scope", scope);
-      console.log("element", element);
+      //console.log("element", element);
       element.on('click', function () {
-        GramService.likeCounter(gramObj).then(function () {
-          return $timeout(function () {
-            element.addClass('show');
-          }, 1000);
+        console.log('im clicked in the directive');
+        element.find('div').removeClass('hidden').addClass('show');
+        $timeout(function () {
+          element.find('div').removeClass('show').addClass('hidden');
+        }, 1000);
+
+        GramService.likeCounter(scope.gram).then(function (res) {
+          console.log(res);
         });
       });
     }
@@ -221,8 +225,9 @@ var GramService = function GramService(PARSE, $http) {
   }
 
   function likeCounter(gramObj) {
-    console.log('clicked');
-    return gramObj.likes + 1;
+    //console.log('clicked');
+    gramObj.likes = gramObj.likes + 1;
+    return $http.put(url + '/' + gramObj.objectId, gramObj, PARSE.CONFIG);
   }
 };
 
