@@ -8442,6 +8442,13 @@ textarea {
   color: grey;
   opacity: 0.7; }
 
+.center-this {
+  font-size: 15px;
+  color: black;
+  position: absolute;
+  top: 32px;
+  left: 32px; }
+
 .hidden {
   display: none;
   position: absolute;

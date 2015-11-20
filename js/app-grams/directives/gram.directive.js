@@ -10,7 +10,7 @@ let shalmaliGram = function($state,GramService,$timeout) {
       <div class="collection">
         <p> {{ gram.name }}
         <img ng-src="{{ gram.picture }}">
-        <div class="hidden"><i class="fa fa-heart fa-5x">{{ gram.likes }}</i></div>
+        <div class="hidden"><i class="fa fa-heart fa-5x"><span class='center-this'>{{ gram.likes }}</span></i></div>
 
       </div>
     `,
