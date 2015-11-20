@@ -1,6 +1,14 @@
-## Welcome to My Project
+## Welcome to My Project Ng-Gram
 
-> I am your Readme.md file, you should probably update me.
+> In this project we created Directives to make a CR project using Angular-directives
+> We were supposed to demostrate the understanding of Angular Style guide and followed the johnpapa style guide 
+> https://github.com/johnpapa/angular-styleguide
+
+##### my project link :http://Ng-Gram.surge.sh
+
+### Upcoming changes ...
+- getting the counter to display within the Heart Icon
+- creating a SignIn /sign up page
 
 
 ## Usage
