@@ -2,7 +2,7 @@
 // See Readme for a list of supported ones
 
 @import "foundation";
-
+@import "font-awesome";
 
 body {
   background: #e2ebf3;
@@ -24,4 +24,37 @@ body {
 
 textarea{
   height :100px;
+}
+
+.collection{
+  margin-left : 10px;
+  margin-bottom : 10px;
+  display:inline-block;
+  position:relative;
+  width :300px;
+  height : 200px;
+  overflow :hidden;
+  padding:0;
+  border :1px solid grey;
+}
+.collection img{
+  height: 200px;
+  width : 300px;
+
+}
+.show{
+  position :absolute;
+  top :70px;
+  left : 100px;
+  color : grey;
+  opacity :0.7;
+}
+
+.hidden{
+  display :none;
+  position :absolute;
+  top :85px;
+  left : 100px;
+  color : grey;
+  opacity :0.7;
 }

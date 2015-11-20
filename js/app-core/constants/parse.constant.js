@@ -1,5 +1,5 @@
 export default {
-  URL :'http://api.parse.com/1/',
+  URL :'https://api.parse.com/1/',
   CONFIG :{
     headers :{
       'X-Parse-Application-Id':'n6DJWbKKFJNaDScnfuT85NBSp0IBlboKXI1FYA6k',

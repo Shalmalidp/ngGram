@@ -38,7 +38,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports['default'] = {
-  URL: 'http://api.parse.com/1/',
+  URL: 'https://api.parse.com/1/',
   CONFIG: {
     headers: {
       'X-Parse-Application-Id': 'n6DJWbKKFJNaDScnfuT85NBSp0IBlboKXI1FYA6k',
@@ -71,20 +71,30 @@ var _constantsParseConstant2 = _interopRequireDefault(_constantsParseConstant);
 _angular2['default'].module('app.core', ['ui.router']).config(_config2['default']).constant('PARSE', _constantsParseConstant2['default']);
 
 },{"./config":1,"./constants/parse.constant":2,"angular":14,"angular-ui-router":12}],4:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var AddGramsController = function AddGramsController(PARSE) {
+var AddGramsController = function AddGramsController(GramService) {
 
   var vm = this;
+  vm.addGram = addGram;
+
+  function addGram(gramObj) {
+    GramService.addGram(gramObj).then(function (res) {
+      console.log(res);
+      gramObj.picture = "";
+      gramObj.name = "";
+      gramObj.description = "";
+    });
+  }
 };
 
-AddGramsController.$inject = ['PARSE'];
+AddGramsController.$inject = ['GramService'];
 
-exports['default'] = AddGramsController;
-module.exports = exports['default'];
+exports["default"] = AddGramsController;
+module.exports = exports["default"];
 
 },{}],5:[function(require,module,exports){
 'use strict';
@@ -92,18 +102,61 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var GramsController = function GramsController(PARSE) {
+var GramsController = function GramsController(GramService) {
 
   var vm = this;
+
+  vm.grams = [];
+
+  activate();
+
+  function activate() {
+    GramService.getAllGrams().then(function (res) {
+      vm.grams = res.data.results;
+    });
+  }
 };
 
-GramsController.$inject = ['PARSE'];
+GramsController.$inject = ['GramService'];
 
 exports['default'] = GramsController;
 module.exports = exports['default'];
 
 },{}],6:[function(require,module,exports){
-"use strict";
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var shalmaliGram = function shalmaliGram($state, GramService, $timeout) {
+
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      gram: '='
+    },
+    template: '\n      <div class="collection">\n        <p> {{ gram.name }}\n        <img ng-src="{{ gram.picture }}" >\n        <div class="hidden"> <i class="fa fa-heart fa-5x">{{ gram.likes }}</i> </div\n\n      </div>\n    ',
+    controller: 'GramsController as vm',
+    link: function link(scope, element, attrs) {
+      console.log("scope", scope);
+      console.log("element", element);
+      element.on('click', function () {
+        GramService.likeCounter(gramObj).then(function () {
+          return $timeout(function () {
+            element.addClass('show');
+          }, 1000);
+        });
+      });
+    }
+
+  };
+};
+
+shalmaliGram.$inject = ['$state', 'GramService', '$timeout'];
+
+exports['default'] = shalmaliGram;
+module.exports = exports['default'];
 
 },{}],7:[function(require,module,exports){
 'use strict';
@@ -134,7 +187,7 @@ var _directivesGramDirective = require('./directives/gram.directive');
 
 var _directivesGramDirective2 = _interopRequireDefault(_directivesGramDirective);
 
-_angular2['default'].module('app.grams', ['app.core']).controller('GramsController', _controllersGramsController2['default']).controller('AddGramsController', _controllersAddgramsController2['default']).service('GramService', _servicesGramService2['default']).directive('gramItem', _directivesGramDirective2['default']);
+_angular2['default'].module('app.grams', ['app.core']).controller('GramsController', _controllersGramsController2['default']).controller('AddGramsController', _controllersAddgramsController2['default']).service('GramService', _servicesGramService2['default']).directive('shalmaliGram', _directivesGramDirective2['default']);
 
 },{"../app-core/index":3,"./controllers/addgrams.controller":4,"./controllers/grams.controller":5,"./directives/gram.directive":6,"./services/gram.service":8,"angular":14}],8:[function(require,module,exports){
 'use strict';
@@ -149,12 +202,13 @@ var GramService = function GramService(PARSE, $http) {
 
   this.getAllGrams = getAllGrams;
   this.addGram = addGram;
+  this.likeCounter = likeCounter;
 
   function Gram(gramObj) {
     this.picture = gramObj.picture;
     this.name = gramObj.name;
     this.description = gramObj.description;
-    //this.likes = gramObj.likes;
+    this.likes = gramObj.likes ? 0 : Number(gramObj.likes);
   }
 
   function addGram(gramObj) {
@@ -164,6 +218,11 @@ var GramService = function GramService(PARSE, $http) {
 
   function getAllGrams() {
     return $http.get(url, PARSE.CONFIG);
+  }
+
+  function likeCounter(gramObj) {
+    console.log('clicked');
+    return gramObj.likes + 1;
   }
 };
 
