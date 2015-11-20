@@ -136,7 +136,7 @@ var shalmaliGram = function shalmaliGram($state, GramService, $timeout) {
     scope: {
       gram: '='
     },
-    template: '\n      <div class="collection">\n        <p> {{ gram.name }}\n        <img ng-src="{{ gram.picture }}">\n        <div class="hidden"><i class="fa fa-heart fa-5x">{{ gram.likes }}</i></div>\n\n      </div>\n    ',
+    template: '\n      <div class="collection">\n        <p> {{ gram.name }}\n        <img ng-src="{{ gram.picture }}">\n        <div class="hidden"><i class="fa fa-heart fa-5x"><span class=\'center-this\'>{{ gram.likes }}</span></i></div>\n\n      </div>\n    ',
     controller: 'GramsController as vm',
     link: function link(scope, element, attrs) {
       console.log("scope", scope);
