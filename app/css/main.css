@@ -8408,7 +8408,23 @@ th.hide-for-touch {
   content: ""; }
 
 body {
-  background: #e2ebf3; }
+  background: #e2ebf3;
+  font-family: 'Lobster Two', cursive; }
+
+.home {
+  width: 70%;
+  margin: 50px auto; }
+
+h5 {
+  font-size: 30px;
+  font-family: 'Lobster Two', cursive;
+  text-align: center;
+  margin: 25px 0; }
+
+.home p {
+  font-family: 'Lobster Two', cursive;
+  width: 70%;
+  margin: 20px auto; }
 
 .project {
   font-family: 'Lobster Two', cursive; }
