@@ -1,6 +1,8 @@
 ## Welcome to My Project Ng-Gram
 
-> In this project we created Directives to make a CR project using Angular-directives.
+> Cloned my version of Instagram.
+
+>In this project we created Directives to make a CR project using Angular-directives.
 >We were supposed to demostrate the understanding of Angular Style guide and followed the johnpapa style guide 
 
 > https://github.com/johnpapa/angular-styleguide
@@ -8,7 +10,6 @@
 ##### my project link : http://ng-gram-beautiful-goose.surge.sh
 
 ### Upcoming changes ...
-- getting the counter to display within the Heart Icon
 - creating a SignIn /sign up page
 
 
