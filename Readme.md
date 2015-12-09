@@ -7,7 +7,7 @@
 
 > https://github.com/johnpapa/angular-styleguide
 
-##### my project link : http://ng-gram-beautiful-goose.surge.sh
+##### my project link : http://ng-gram-angular-heart-assignment.surge.sh/
 
 ### Upcoming changes ...
 - creating a SignIn /sign up page
